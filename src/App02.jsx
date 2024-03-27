@@ -3,54 +3,31 @@ import { useState, useEffect } from "react"
 
 import { v4 as uuidv4 } from 'uuid';
 
-export default function App() {
+export default function App02() {
 
   const [todo, setTodo] = useState("")
   const [todos, setTodos] = useState([])
 
-  // useEffect(() => {
-  //   let todoString = localStorage.getItem('todos')
     
-  //   if (todoString) {
-  //     let todos = JSON.parse(localStorage.getItem('todos'))
-  //     setTodos(todos)
-  //   }
-  // }, [])
-  
-
-  useEffect(() => {
-    let todoString = localStorage.getItem('todos');
-    
-    if (todoString) {
-      let todos = JSON.parse(todoString);
-      setTodos(todos);
-    }
-  }, []);
-
-
-  const saveToLS = () => {
-    localStorage.setItem('todos', JSON.stringify(todos))
-  }
-  
 
   const handleEdit = (e, id) => {
     let t = todos.filter(i => i.id === id)
     setTodo(t[0].todo)
     let newTodos = todos.filter(item => item.id !== id)
     setTodos(newTodos)
-    saveToLS();
+
 
   }
   const handleDelete = (e, id) => {
     let newTodos = todos.filter(item => item.id !== id)
     setTodos(newTodos)
-    saveToLS();
+
   }
   const handleAdd = () => {
     setTodos([...todos, { id: uuidv4(), todo, isCompleted: false }])
     setTodo("");
     console.log(todos);
-    saveToLS();
+
   }
   const handleChange = (e) => {
     setTodo(e.target.value)
@@ -61,7 +38,7 @@ export default function App() {
     let index = todos.findIndex(item => item.id === id);
     let newTodos = [...todos];
     newTodos[index].isCompleted = !newTodos[index].isCompleted;
-    saveToLS();
+
   }
 
 
