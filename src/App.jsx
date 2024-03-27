@@ -83,7 +83,8 @@ export default function App() {
           {todos.map(item => {
             return (
 
-              <div key={item} className="todo flex w-fit justify-between gap-96 my-3">
+              <div key={item.id} className="todo flex w-fit justify-between gap-96 my-3">
+
                 <div className="itext flex gap-12">
                   <input type="checkbox" name={item.id} onChange={handleCheckbox} value={item.isCompleted} id="" />
                   <div className={item.isCompleted ? 'line-through' : ''}>{item.todo}</div>
